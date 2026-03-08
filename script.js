@@ -157,6 +157,8 @@ function resetPoints() {
     window.markerEnd = null;
     polyline = null;
 
+    pontoAtual = "A";
+
     // limpar inputs
     document.getElementById("lat1").value = "";
     document.getElementById("lng1").value = "";
@@ -173,7 +175,6 @@ function resetPoints() {
     // limpar estruturas de dados
     previewPerfil = [];
     dadosPerfil = [];
-    pontosPerfil = [];
 
     // destruir gráfico preview
     if (chartPreview) {
@@ -188,8 +189,12 @@ function resetPoints() {
     }
 
     // limpar tabela
-    const tabela = document.getElementById("outputTable");
+    const tabela = document.getElementById("output");
     if(tabela) tabela.innerHTML = "";
+
+    // reset barra de progresso
+    document.getElementById("progress").innerText = "0 / 0";
+    document.getElementById("progressFill").style.width = "0%";
 
 }
 

@@ -4,26 +4,34 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<div class="container">
+<div class="panel header">
 
-  <!-- Header -->
-  <div class="panel header">
-    <h1>Perfil da Ligação</h1>
-    <p><b>UC:</b> PST<br><b>Data:</b> <span id="data"></span></p>
-    <p>Ferramenta para cálculo de perfil de elevação entre dois pontos usando Open-Elevation e OpenStreetMap</p>
-    <h3>Instruções</h3>
-    <ol>
-      <li>Introduza as coordenadas (latitude e longitude) usando vírgula como separador decimal, ou selecione os pontos diretamente no mapa.</li>
-      <li>Verifique o preview da ligação para confirmar que está conforme o pretendido.</li>
-      <li>Pressione <b>Calcular Perfil</b> para gerar o gráfico final. Pode ajustar e validar o comportamento do elipsóide de Fresnel modificando as alturas das antenas de emissão e receção (0 a 50 m) e a frequência de trabalho (1 a 20 GHz).</li>
-      <li>Faça download dos ficheiros gerados:</li>
-        <ul>
-          <li>TXT - para importar no Feixer;</li>
-          <li>CSV - para mais informações;</li>
-          <li>PDF - para anexar ao relatório.</li>
-      </ul>
-    </ol>
+  <div class="header-top">
+
+    <img src="rgb_ista_pt_vertical_main.png" class="logo" alt="Iscte">
+
+    <div class="header-text">
+      <h1>Perfil da Ligação</h1>
+      <p><b>UC:</b> PST<br><b>Data:</b> <span id="data"></span></p>
+      <p>Ferramenta para cálculo de perfil de elevação entre dois pontos usando Open-Elevation e OpenStreetMap</p>
+    </div>
+
   </div>
+
+  <h3>Instruções</h3>
+  <ol>
+    <li>Introduza as coordenadas (latitude e longitude) usando vírgula como separador decimal, ou selecione os pontos diretamente no mapa.</li>
+    <li>Verifique o preview da ligação para confirmar que está conforme o pretendido.</li>
+    <li>Pressione <b>Calcular Perfil</b> para gerar o gráfico final. Pode ajustar e validar o comportamento do elipsóide de Fresnel modificando as alturas das antenas de emissão e receção (0 a 50 m) e a frequência de trabalho (1 a 20 GHz).</li>
+    <li>Faça download dos ficheiros gerados:</li>
+      <ul>
+        <li>TXT - para importar no Feixer;</li>
+        <li>CSV - para mais informações;</li>
+        <li>PDF - para anexar ao relatório.</li>
+      </ul>
+  </ol>
+
+</div>
 
   <!-- Inputs -->
   <div class="panel">
