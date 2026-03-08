@@ -1,0 +1,132 @@
+<link rel="stylesheet" href="style.css">
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="panel header">
+    <h1>Perfil da Ligação</h1>
+    <p><b>UC:</b> PST<br><b>Data:</b> <span id="data"></span></p>
+    <p>Ferramenta para cálculo de perfil de elevação entre dois pontos usando Open-Elevation e OpenStreetMap</p>
+    <h3>Instruções</h3>
+    <ol>
+      <li>Introduza as coordenadas (latitude e longitude) usando vírgula como separador decimal, ou selecione os pontos diretamente no mapa.</li>
+      <li>Verifique o preview da ligação para confirmar que está conforme o pretendido.</li>
+      <li>Pressione <b>Calcular Perfil</b> para gerar o gráfico final. Pode ajustar e validar o comportamento do elipsóide de Fresnel modificando as alturas das antenas de emissão e receção (0 a 50 m) e a frequência de trabalho (1 a 20 GHz).</li>
+      <li>Faça download dos ficheiros gerados:</li>
+        <ul>
+          <li>TXT - para importar no Feixer;</li>
+          <li>CSV - para mais informações;</li>
+          <li>PDF - para anexar ao relatório.</li>
+      </ul>
+    </ol>
+  </div>
+
+  <!-- Inputs -->
+  <div class="panel">
+     <h2>Dados da Ligação</h2>
+    <div class="inputs">
+      <div><label>Latitude A</label><input id="lat1" type="number" step="0.000001" ></div>
+      <div><label>Longitude A</label><input id="lng1" type="number" step="0.000001" ></div>
+      <div><label>Latitude B</label><input id="lat2" type="number" step="0.000001" ></div>
+      <div><label>Longitude B</label><input id="lng2" type="number" step="0.000001" ></div>
+    </div>
+    <br>
+    <div class="panel-buttons">
+        <button onclick="resetPoints()">Reset Pontos A/B</button>
+        <button onclick="calcularPerfil()">Calcular Perfil</button>
+    </div>
+  </div>
+
+
+  <!-- Informações -->
+<div class="panel" id="infoLigacao">
+  <h2>Informação da Ligação</h2>
+
+  <div class="dashboard">
+    <div class="card">
+      <span class="label">Distância</span>
+      <span id="distancia" class="value">—</span>
+    </div>
+
+    <div class="card">
+      <span class="label">Pontos da amostra</span>
+      <span id="numPontos" class="value">—</span>
+    </div>
+
+    <div class="card">
+      <span class="label">Elevação mínima</span>
+      <span id="elevMin" class="value">—</span>
+    </div>
+
+    <div class="card">
+      <span class="label">Elevação máxima</span>
+      <span id="elevMax" class="value">—</span>
+    </div>
+
+    <div class="card">
+      <span class="label">Ligação</span>
+      <span id="ligacao" class="value">—</span>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Mapa -->
+  <div class="panel">
+    <h2>Mapa</h2>
+    <div id="map"></div>
+  </div>
+
+  <!-- Gráfico -->
+  <div class="panel">
+    <h2>Perfil de Elevação</h2>
+    <canvas id="chart"></canvas>
+    <div class="inputs" style="display:flex; justify-content:space-between; margin-top:10px; gap:10px;">
+      <div > 
+          <label>Altura Antena Emissora (m)</label><br>
+          <input id="inputEmissora" type="number" min="0" max="50" step="1" value="0">
+      </div>
+      <div>
+          <label>Frequência (GHz)</label><br>
+          <input id="inputFreq" type="number" min="1" max="20" step="1" value="10">
+      </div>
+      <div>
+          <label>Altura Antena Receptora (m)</label><br>
+          <input id="inputReceptora" type="number" min="0" max="50" step="1" value="0">
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela -->
+  <div class="panel">
+    <nav>
+      <h2>Distância / Elevação</h2>
+      <div class="progress-bar">
+      <div id="progressFill"></div>
+      <span id="progress"></span>
+    </div>
+      <div class="table-container">
+        <table id="outputTable">
+          <thead>
+            <tr><th>ID</th><th>Distância (km)</th><th>Elevação (m)</th><th>Latitude</th><th>Longitude</th></tr>
+          </thead>
+          <tbody id="output"></tbody>
+        </table>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Botões download / PDF -->
+  <div class="panel buttons">
+    <button onclick="downloadTXT()">Download TXT</button>
+    <button onclick="downloadCSV()">Download CSV</button>
+    <button onclick="window.print()">Gerar PDF</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
